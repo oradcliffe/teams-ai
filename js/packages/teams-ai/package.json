@@ -39,7 +39,16 @@
     "resolutions": {
         "follow-redirects": "1.14.7"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "@types/node": "^14.14.31",
+        "@types/mocha": "^8.2.0",
+        "@types/assert": "^1.5.3",
+        "mocha": "10.2.0",
+        "nyc": "^15.1.0",
+        "shx": "^0.3.2",
+        "ts-mocha": "10.0.0",
+        "typescript": "^4.2.3"
+    },
     "scripts": {
         "build": "tsc -b",
         "build-docs": "typedoc --theme markdown --entryPoint teams-ai --excludePrivate --includeDeclarations --ignoreCompilerErrors --module amd --out ..\\..\\doc\\botbuilder-ai .\\lib\\index.d.ts --hideGenerator --name \"Bot Builder SDK - AI\" --readme none",
@@ -47,8 +56,9 @@
         "clean": "rimraf _ts3.4 lib tsconfig.tsbuildinfo node_modules",
         "depcheck": "depcheck --config ../../.depcheckrc",
         "lint": "eslint **/src/**/*.{j,t}s{,x} --fix --no-error-on-unmatched-pattern",
-        "test": "npm-run-all build test:mocha",
-        "test:mocha": "nyc mocha tests",
+        "test": "ts-mocha src/**/*.spec.ts --timeout 10000",
+        "test:debug": "ts-mocha src/**/*.spec.ts --inspect-brk",
+        "test:coverage": "nyc --reporter=html --reporter=text --reporter=text-summary npm test",
         "test:compat": "api-extractor run --verbose"
     },
     "files": [
