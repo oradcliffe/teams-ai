@@ -77,7 +77,7 @@ type ApplicationTurnState = DefaultTurnState<DefaultConversationState, DefaultUs
 const planner = new AzureOpenAIPlanner({
     apiKey: process.env.OPENAI_API_KEY,
     endpoint: process.env.OPENAI_ENDPOINT,
-    defaultModel: 'text-davinci-003',
+    defaultModel: 'davinciThreeTeamsBot', //this needs to be the name of the openai deployment you have, not the model name
     logRequests: true,
 })
 
